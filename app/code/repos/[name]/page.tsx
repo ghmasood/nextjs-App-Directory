@@ -1,7 +1,7 @@
 import Repo from "@/app/components/Repo";
 import RepoDirs from "@/app/components/RepoDirs";
 import Link from "next/link";
-import React from "react";
+import React, { Suspense } from "react";
 
 function RepoPage({ params }: { params: { name: string } }) {
   return (
@@ -9,8 +9,14 @@ function RepoPage({ params }: { params: { name: string } }) {
       <Link href="/code/repos" className="btn btn-back">
         Back to Repositories
       </Link>
-      <Repo name={params.name} />
-      <RepoDirs name={params.name} />
+      <Suspense fallback={<div>Loading Repo...</div>}>
+        {/* @ts-expect-error Server Component */}
+        <Repo name={params.name} />
+      </Suspense>
+      <Suspense fallback={<div>Loading Dirs...</div>}>
+        {/* @ts-expect-error Server Component */}
+        <RepoDirs name={params.name} />
+      </Suspense>
     </div>
   );
 }

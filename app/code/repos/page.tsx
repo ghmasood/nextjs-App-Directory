@@ -36,7 +36,9 @@ async function ReposPage() {
 export default ReposPage;
 
 async function fetchRepos() {
-  const response = await fetch("https://api.github.com/users/ghmasood/repos");
+  const response = await fetch("https://api.github.com/users/ghmasood/repos", {
+    next: { revalidate: 600 },
+  });
   await new Promise((res) => {
     setTimeout(res, 1000);
   });

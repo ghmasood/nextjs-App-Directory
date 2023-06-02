@@ -28,7 +28,9 @@ async function Repo({ name }: { name: string }) {
 export default Repo;
 
 const ferchRepo = async (name: string) => {
-  const res = await fetch(`https://api.github.com/repos/ghmasood/${name}`);
+  const res = await fetch(`https://api.github.com/repos/ghmasood/${name}`, {
+    next: { revalidate: 600 },
+  });
   const repo = await res.json();
   return repo;
 };
