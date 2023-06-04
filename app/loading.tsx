@@ -1,6 +1,6 @@
 import React from "react";
 
-function Loading() {
+function LoadingPage() {
   return (
     <div className="loader">
       <div className="spinner"></div>
@@ -8,4 +8,4 @@ function Loading() {
   );
 }
 
-export default Loading;
+export default LoadingPage;
